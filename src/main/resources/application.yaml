@@ -1,0 +1,29 @@
+
+
+server:
+  port: 8052
+
+spring:
+  datasource:
+    url: "jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;"
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    schema: classpath:scripts/init-schema.sql
+    data: classpath:scripts/init-data.sql
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: none
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
